@@ -1,1 +1,1 @@
-﻿namespace MyInterface;
+﻿System.Console.Write("");
