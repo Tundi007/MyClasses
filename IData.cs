@@ -19,16 +19,62 @@ public interface IData
     
     }
 
+    public static double[] Parse2Double_Function(string[][] csvData_StringArray2D, int columnNumber_Int)
+    {
+
+        return ParseCSV2DoublePrivate_Function(csvData_StringArray2D, columnNumber_Int);
+
+    }
+
+    public static int[] Parse2Int_Function(string[][] csvData_StringArray2D, int columnNumber_Int)
+    {
+
+        return ParseCSV2IntPrivate_Function(csvData_StringArray2D, columnNumber_Int);
+
+    }
+
+    private static double[] ParseCSV2DoublePrivate_Function(string[][] csvData_StringArray2D, int columnNumber_Int)
+    {
+
+        double[] targetColumn_StringArray = new double[csvData_StringArray2D.Length];
+
+        for (int row_Int = 0; row_Int < csvData_StringArray2D.Length; row_Int++)
+        {
+
+            _ = double.TryParse(csvData_StringArray2D[row_Int][columnNumber_Int], out targetColumn_StringArray[row_Int]);
+            
+        }
+
+        // double[] orderedTotalIncome_DoubleArray = incomePerMember_DoubleArray.Order().ToArray()[..tenth_Int];
+
+        return targetColumn_StringArray;
+
+    }
+
+    private static int[] ParseCSV2IntPrivate_Function(string[][] csvData_StringArray2D, int columnNumber_Int)
+    {
+
+        int[] targetColumn_StringArray = new int[csvData_StringArray2D.Length];
+
+        for (int row_Int = 0; row_Int < csvData_StringArray2D.Length; row_Int++)
+        {
+
+            _ = int.TryParse(csvData_StringArray2D[row_Int][columnNumber_Int], out targetColumn_StringArray[row_Int]);
+            
+        }
+
+        return targetColumn_StringArray;
+
+    }
+
     private static string[][] GetDataCSVPrivate_Function(string filePath_String)
     {
 
-        
-        // List<string> data_StringList = []; this seems way better, but managing is harder
-
+        //list version
         // try
         // {
 
-        //     data_StringList = [.. File.ReadAllLines("Khanevar92.csv").Skip(1)];
+        //     string[][] csvData_StringArray2D = [.. File.ReadAllLines("Khanevar92.csv")];
 
         // }
         // catch (System.Exception readCSV_Exception)
@@ -37,27 +83,6 @@ public interface IData
         //     System.Console.WriteLine(readCSV_Exception);
 
         // }
-
-        // double[] familySize_DoubleArray = new double[data_StringList.Count];
-
-        // double[] totalIncome_DoubleArray = new double[data_StringList.Count];
-
-        // double[] incomePerMember_DoubleArray = new double[data_StringList.Count];
-
-        // for (int row_Int = 0; row_Int < data_StringList.Count; row_Int++)
-        // {
-
-        //     _ = double.TryParse(data_StringList[row_Int].Split(",")[14], out familySize_DoubleArray[row_Int]);
-
-        //     _ = double.TryParse(data_StringList[row_Int].Split(",")[16], out totalIncome_DoubleArray[row_Int]);
-
-        //     incomePerMember_DoubleArray[row_Int] = totalIncome_DoubleArray[row_Int]/familySize_DoubleArray[row_Int];
-            
-        // }
-
-        // int tenth_Int = incomePerMember_DoubleArray.Length/10;
-
-        // double[] orderedTotalIncome_DoubleArray = incomePerMember_DoubleArray.Order().ToArray()[..tenth_Int];
 
         try
         {
@@ -81,9 +106,7 @@ public interface IData
 
             int rowCount_Int = 0;
 
-            string[]? readLine = csvFileReader_TextFieldParser.ReadFields();
-
-            csvFileReader_TextFieldParser.ReadFields();
+            string[]? readLine;
 
             while ((readLine = csvFileReader_TextFieldParser.ReadFields()) != null)
             {
@@ -134,4 +157,4 @@ public interface IData
     
     }
 
-}
+} 
