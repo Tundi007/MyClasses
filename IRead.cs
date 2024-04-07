@@ -138,7 +138,7 @@ public interface IRead
     {
 
         (int menuPointerRow_Int, int menuPointerColumn_Int,string hint_String,string[][] backup_ArrayString2D) =
-            (1,1,"Use Arrow Keys To Navigate, \"Enter\" To Select,  \"Delete\" To Eliminate The Element, \"E\" To Replace Element With New Value",menuItems_ArrayString2D);
+            (0,0,"Use Arrow Keys To Navigate, \"Enter\" To Select,  \"Delete\" To Eliminate The Element, \"E\" To Replace Element With New Value",menuItems_ArrayString2D);
 
         while(true)
         {
@@ -202,7 +202,7 @@ public interface IRead
                 case ConsoleKey.RightArrow:
                 {
                  
-                    if(menuPointerColumn_Int >= menuItems_ArrayString2D[menuPointerRow_Int].Length)break;
+                    if(menuPointerColumn_Int >= menuItems_ArrayString2D[menuPointerRow_Int].Length-1)break;
 
                     menuPointerColumn_Int++;
 
@@ -215,18 +215,18 @@ public interface IRead
 
                     menuPointerRow_Int--;
 
-                    if(menuItems_ArrayString2D[menuPointerRow_Int].Length-1<menuPointerColumn_Int)menuPointerColumn_Int = menuItems_ArrayString2D[menuPointerRow_Int].Length-1;
+                    if(menuItems_ArrayString2D[menuPointerRow_Int].Length<=menuPointerColumn_Int)menuPointerColumn_Int = menuItems_ArrayString2D[menuPointerRow_Int].Length-1;
 
                 }break;
 
                 case ConsoleKey.DownArrow:
                 {
                  
-                    if(menuPointerRow_Int >= menuItems_ArrayString2D.Length)break;
+                    if(menuPointerRow_Int >= menuItems_ArrayString2D.Length-1)break;
 
                     menuPointerRow_Int++;
 
-                    if(menuItems_ArrayString2D[menuPointerRow_Int].Length<menuPointerColumn_Int)menuPointerColumn_Int = menuItems_ArrayString2D[menuPointerRow_Int].Length-1;
+                    if(menuItems_ArrayString2D[menuPointerRow_Int].Length<=menuPointerColumn_Int)menuPointerColumn_Int = menuItems_ArrayString2D[menuPointerRow_Int].Length-1;
 
                 }break;
 
@@ -360,16 +360,18 @@ public interface IRead
         if(stringIndex_Int==-1)
         {
 
+            stringIndex_Int = 0;
+
             index_String = "";
 
         }
 
-        for (var column_Int = 0; column_Int < menuItems_ArrayString2D.Length; column_Int++)
-        {
+        // for (var column_Int = 0; column_Int < menuItems_ArrayString2D.Length; column_Int++)
+        // {
 
-            System.Console.Write(column_Int);
+        //     System.Console.Write(column_Int);
             
-        }
+        // }
 
         System.Console.WriteLine();
 
@@ -384,12 +386,12 @@ public interface IRead
                 if(rowNumber_Int == menuPointerRow_Int && columnNumber_Int == menuPointerColumn_Int)
                 {
 
-                    System.Console.Write($">{menuItems_ArrayString2D[rowNumber_Int][columnNumber_Int][..stringIndex_Int]}{index_String}{menuItems_ArrayString2D[rowNumber_Int][columnNumber_Int][stringIndex_Int..]}< , ");
+                    System.Console.Write($" >{menuItems_ArrayString2D[rowNumber_Int][columnNumber_Int][..stringIndex_Int]}{index_String}{menuItems_ArrayString2D[rowNumber_Int][columnNumber_Int][stringIndex_Int..]}< ");
 
                 }else
                 {
 
-                    System.Console.Write($"{menuItems_ArrayString2D[rowNumber_Int][columnNumber_Int]} , ");
+                    System.Console.Write($"{menuItems_ArrayString2D[rowNumber_Int][columnNumber_Int]} ");
 
                 }
 

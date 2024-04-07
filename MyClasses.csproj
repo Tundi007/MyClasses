@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>zHomeworkInterface</PackageId>
+    <Version>1</Version>
+    <Authors>ArmanArjmand</Authors>
+    <Company>Tundi007</Company>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

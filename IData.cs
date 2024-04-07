@@ -3,7 +3,9 @@ using Microsoft.VisualBasic.FileIO;
 namespace MyInterface;
 
 public interface IData
-{
+{    
+
+    // double[] orderedTotalIncome_DoubleArray = incomePerMember_DoubleArray.Order().ToArray()[..tenth_Int];
 
     public static string[][] CSVDataRead_Function(string filePath_String)
     {
@@ -44,8 +46,6 @@ public interface IData
             _ = double.TryParse(csvData_StringArray2D[row_Int][columnNumber_Int], out targetColumn_StringArray[row_Int]);
             
         }
-
-        // double[] orderedTotalIncome_DoubleArray = incomePerMember_DoubleArray.Order().ToArray()[..tenth_Int];
 
         return targetColumn_StringArray;
 
